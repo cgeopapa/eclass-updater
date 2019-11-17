@@ -18,9 +18,9 @@ namespace eclass_updater
         {
             user = new User(unameTextBox.Text, passTextBox.Text);
 
-            if (browser.SignIn(user))
+            if (browser.SignIn(ref user))
             {
-                browser.GetCourses(user);
+
             }
             else
             {

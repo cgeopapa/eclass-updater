@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace eclass_updater.model
 {
@@ -9,12 +10,12 @@ namespace eclass_updater.model
         private Uri url;
         private string path;
 
-        public Course(bool update, string name, Uri url, string path)
+        public Course(string name, Uri url)
         {
-            this.update = update;
+            this.update = true;
             this.name = name;
             this.url = url;
-            this.path = path;
+            this.path = Directory.GetCurrentDirectory();
         }
     }
 }

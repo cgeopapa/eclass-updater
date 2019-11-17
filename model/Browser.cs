@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using HtmlAgilityPack;
 using System.Linq;
+using eclass_updater.dao;
 
 namespace eclass_updater.model
 {
@@ -20,7 +21,7 @@ namespace eclass_updater.model
             handler.CookieContainer.SetCookies(url, "Cookie");
         }
 
-        public bool SignIn(User user)
+        public bool SignIn(ref User user)
         {
             var values = new Dictionary<string, string>
             {
@@ -37,11 +38,13 @@ namespace eclass_updater.model
             }
             else
             {
+                GetCourses(user);
+                JsonDAO.Save(user);
                 return true;
             }
         }
 
-        public void GetCourses(User user)
+        private void GetCourses(User user)
         {
             List<Course> courses = new List<Course>();
             HtmlDocument doc = new HtmlDocument();
@@ -55,7 +58,7 @@ namespace eclass_updater.model
                 string id = uri.Segments.Last();
                 Uri courseUrl = new Uri(string.Format("https://eclass.aueb.gr/modules/document/index.php?course={0}&download=/", id));
 
-                courses.Add(new Course(true, name, courseUrl, System.IO.Directory.GetCurrentDirectory()));
+                courses.Add(new Course(name, courseUrl));
             }
             user.courses = courses.ToArray();
         }
