@@ -1,6 +1,6 @@
 ﻿namespace eclass_updater.model
 {
-    class User
+    public class User
     {
         public readonly string userName;
         public readonly string password;

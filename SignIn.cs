@@ -20,7 +20,8 @@ namespace eclass_updater
 
             if (browser.SignIn(ref user))
             {
-
+                ShowDialog(new MainApp(user));
+                Close();
             }
             else
             {

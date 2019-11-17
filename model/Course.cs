@@ -3,12 +3,12 @@ using System.IO;
 
 namespace eclass_updater.model
 {
-    class Course
+    public class Course
     {
-        private bool update;
+        public bool update;
         private string name;
         private Uri url;
-        private string path;
+        public string path;
 
         public Course(string name, Uri url)
         {
@@ -17,5 +17,8 @@ namespace eclass_updater.model
             this.url = url;
             this.path = Directory.GetCurrentDirectory();
         }
+
+        public string Name { get => name; }
+        public Uri Url { get => url; }
     }
 }

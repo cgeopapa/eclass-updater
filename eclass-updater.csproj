@@ -60,11 +60,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Course.cs">
+    <Compile Include="CourseForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Course.Designer.cs">
-      <DependentUpon>Course.cs</DependentUpon>
+    <Compile Include="CourseForm.Designer.cs">
+      <DependentUpon>CourseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="dao\JsonDAO.cs" />
     <Compile Include="MainApp.cs">
@@ -84,8 +84,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Course.resx">
-      <DependentUpon>Course.cs</DependentUpon>
+    <EmbeddedResource Include="CourseForm.resx">
+      <DependentUpon>CourseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainApp.resx">
       <DependentUpon>MainApp.cs</DependentUpon>

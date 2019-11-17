@@ -18,10 +18,15 @@ namespace eclass_updater.dao
         {
             if (File.Exists(path))
             {
-                User user = (User)JsonConvert.DeserializeObject(File.ReadAllText(path));
+                User user = JsonConvert.DeserializeObject<User>(File.ReadAllText(path));
                 return user;
             }
             return null;
+        }
+
+        public static void Delete()
+        {
+            File.Delete(path);
         }
     }
 }
