@@ -1,12 +1,12 @@
 ﻿using System;
 using eclass_updater.model;
 using System.Windows.Forms;
+using eclass_updater.dao;
 
 namespace eclass_updater
 {
     public partial class SignIn : Form
     {
-        private Browser browser = new Browser();
         private User user;
 
         public SignIn()
@@ -18,9 +18,14 @@ namespace eclass_updater
         {
             user = new User(unameTextBox.Text, passTextBox.Text);
 
-            if (browser.SignIn(ref user))
+            if (Program.browser.SignIn(ref user))
             {
-                ShowDialog(new MainApp(user));
+                Program.browser.GetCourses(user);
+                JsonDAO.Save(user);
+
+                Hide();
+                MainApp m = new MainApp(user);
+                m.ShowDialog();
                 Close();
             }
             else

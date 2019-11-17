@@ -4,6 +4,8 @@ using System.Net.Http;
 using HtmlAgilityPack;
 using System.Linq;
 using eclass_updater.dao;
+using System.IO.Compression;
+using System.Threading.Tasks;
 
 namespace eclass_updater.model
 {
@@ -38,13 +40,11 @@ namespace eclass_updater.model
             }
             else
             {
-                GetCourses(user);
-                JsonDAO.Save(user);
                 return true;
             }
         }
 
-        private void GetCourses(User user)
+        public void GetCourses(User user)
         {
             List<Course> courses = new List<Course>();
             HtmlDocument doc = new HtmlDocument();
@@ -61,6 +61,15 @@ namespace eclass_updater.model
                 courses.Add(new Course(name, courseUrl));
             }
             user.courses = courses.ToArray();
+        }
+
+        public void DownloadZip(Uri url, string path)
+        {
+            var result = client.GetAsync(url).Result.Content.ReadAsStreamAsync().Result;
+            using (var zip = new ZipArchive(result))
+            {
+                zip.ExtractToDirectory(path);                
+            }
         }
     }
 }

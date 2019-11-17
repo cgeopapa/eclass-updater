@@ -27,7 +27,10 @@ namespace eclass_updater
         private void logout_Click(object sender, System.EventArgs e)
         {
             JsonDAO.Delete();
-            ShowDialog(new SignIn());
+
+            Hide();
+            SignIn s = new SignIn();
+            s.ShowDialog();
             Close();
         }
 
@@ -38,7 +41,13 @@ namespace eclass_updater
 
         private void update_Click(object sender, EventArgs e)
         {
-
+            foreach(Course c in user.courses)
+            {
+                if(c.update)
+                {
+                    Program.browser.DownloadZip(c.Url, c.path);
+                }
+            }
         }
     }
 }

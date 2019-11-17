@@ -10,9 +10,8 @@ namespace eclass_updater
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
+        public static Browser browser = new Browser();
+
         [STAThread]
         static void Main()
         {
@@ -26,6 +25,7 @@ namespace eclass_updater
             }
             else
             {
+                browser.SignIn(ref user);
                 Application.Run(new MainApp(user));
             }
         }

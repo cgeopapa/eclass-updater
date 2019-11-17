@@ -6,7 +6,7 @@ namespace eclass_updater.dao
 {
     class JsonDAO
     {
-        private static readonly string path = Directory.GetCurrentDirectory() + "data.json";
+        private static readonly string path = Directory.GetCurrentDirectory() + @"\data.json";
 
         public static void Save(User user)
         {
