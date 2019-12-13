@@ -16,12 +16,9 @@ namespace eclass_updater.dao
 
         public static User Load()
         {
-            if (File.Exists(path))
-            {
-                User user = JsonConvert.DeserializeObject<User>(File.ReadAllText(path));
-                return user;
-            }
-            return null;
+            if (!File.Exists(path)) return null;
+            User user = JsonConvert.DeserializeObject<User>(File.ReadAllText(path));
+            return user;
         }
 
         public static void Delete()

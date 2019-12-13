@@ -34,6 +34,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.passTextBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -94,11 +95,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.Location = new System.Drawing.Point(12, 123);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(144, 26);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Αναφορά προβλήματος:\r\ncgeopapa@gmail.com";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // SignIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(364, 161);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.passTextBox);
             this.Controls.Add(this.label3);
@@ -123,6 +135,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox passTextBox;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label4;
     }
 }
 

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using HtmlAgilityPack;
 using System.Linq;
-using eclass_updater.dao;
 using System.IO.Compression;
-using System.Threading.Tasks;
+using System.Configuration;
 
 namespace eclass_updater.model
 {
@@ -13,7 +12,7 @@ namespace eclass_updater.model
     {
         private static readonly HttpClient client;
 
-        private static readonly Uri url = new Uri(@"https://eclass.aueb.gr/");
+        private static readonly Uri url = new Uri(ConfigurationManager.AppSettings["url"]);
 
         static Browser()
         {
@@ -48,15 +47,15 @@ namespace eclass_updater.model
         {
             List<Course> courses = new List<Course>();
             HtmlDocument doc = new HtmlDocument();
-            doc.LoadHtml(client.GetAsync("https://eclass.aueb.gr/main/my_courses.php").Result.Content.ReadAsStringAsync().Result);
+            doc.LoadHtml(client.GetAsync(ConfigurationManager.AppSettings["all-courses"]).Result.Content.ReadAsStringAsync().Result);
 
-            foreach(var t in doc.DocumentNode.SelectNodes(@"/html/body/div[2]/div[1]/div[3]/div/div/div[4]/table/tbody/tr/td[1]/strong"))
+            foreach(var t in doc.DocumentNode.SelectNodes(ConfigurationManager.AppSettings["xpath"]))
             {
                 string name = t.InnerText;
 
                 Uri uri = new Uri(t.ChildNodes[0].GetAttributeValue("href", "100"));
                 string id = uri.Segments.Last();
-                Uri courseUrl = new Uri(string.Format("https://eclass.aueb.gr/modules/document/index.php?course={0}&download=/", id));
+                Uri courseUrl = new Uri(string.Format(ConfigurationManager.AppSettings["download"], id));
 
                 courses.Add(new Course(name, courseUrl));
             }
@@ -68,7 +67,7 @@ namespace eclass_updater.model
             var result = client.GetAsync(url).Result.Content.ReadAsStreamAsync().Result;
             using (var zip = new ZipArchive(result))
             {
-                zip.ExtractToDirectory(path);                
+                zip.ExtractToDirectory(path);
             }
         }
     }
