@@ -53,6 +53,7 @@ namespace eclass_updater
                     Program.browser.DownloadZip(c.Url, c.path);
                 }
             }
+            MessageBox.Show("Η ενημέρωση ολοκληρώθηκε με επιτυχία", "Ολοκληρώθηκε", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

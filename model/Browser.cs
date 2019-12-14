@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using HtmlAgilityPack;
 using System.Linq;
 using System.IO.Compression;
 using System.Configuration;
+using System.IO;
+using System.Windows.Forms;
+using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
 namespace eclass_updater.model
 {
@@ -67,7 +69,24 @@ namespace eclass_updater.model
             var result = client.GetAsync(url).Result.Content.ReadAsStreamAsync().Result;
             using (var zip = new ZipArchive(result))
             {
-                zip.ExtractToDirectory(path);
+                foreach (var file in zip.Entries)
+                {
+                    if (file.Name.Equals(""))
+                    {
+                        continue;
+                    }
+                    string p = Path.Combine(path, file.FullName);
+                    if (File.Exists(p) && File.GetLastWriteTime(p) != file.LastWriteTime)
+                    {
+                        //Create new name
+                        string newName = p.Insert(p.LastIndexOf('.'), "_modified");
+
+                        //Rename
+                        File.Move(p, newName);
+                    }
+                    //Safely extract
+                    file.ExtractToFile(p, true);
+                }
             }
         }
     }
