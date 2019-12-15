@@ -121,7 +121,7 @@
             this.MaximumSize = new System.Drawing.Size(380, 200);
             this.MinimumSize = new System.Drawing.Size(380, 200);
             this.Name = "SignIn";
-            this.Text = "eclass-updater/Σύνδεση";
+            this.Text = "eclass-updater/Σύνδεση(BETA)";
             this.ResumeLayout(false);
             this.PerformLayout();
 

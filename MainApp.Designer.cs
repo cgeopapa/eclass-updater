@@ -111,7 +111,7 @@
             this.Controls.Add(this.tablePanel);
             this.MinimumSize = new System.Drawing.Size(560, 270);
             this.Name = "MainApp";
-            this.Text = "eclass-updater";
+            this.Text = "eclass-updater(BETA)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainApp_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

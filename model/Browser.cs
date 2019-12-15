@@ -76,13 +76,17 @@ namespace eclass_updater.model
                         continue;
                     }
                     string p = Path.Combine(path, file.FullName);
-                    if (File.Exists(p) && File.GetLastWriteTime(p) != file.LastWriteTime)
+                    if (File.Exists(p))
                     {
-                        //Create new name
-                        string newName = p.Insert(p.LastIndexOf('.'), "_modified");
+                        FileInfo f = new FileInfo(p);
+                        if ((f.LastWriteTime > file.LastWriteTime) || (f.LastWriteTime < file.LastWriteTime && f.CreationTime < f.LastWriteTime))
+                        {
+                            //Create new name
+                            string newName = p.Insert(p.LastIndexOf('.'), "_old_copy");
 
-                        //Rename
-                        File.Move(p, newName);
+                            //Rename
+                            File.Move(p, newName);
+                        }
                     }
                     //Safely extract
                     file.ExtractToFile(p, true);
