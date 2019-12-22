@@ -5,7 +5,6 @@ using System.Linq;
 using System.IO.Compression;
 using System.Configuration;
 using System.IO;
-using System.Windows.Forms;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
 namespace eclass_updater.model

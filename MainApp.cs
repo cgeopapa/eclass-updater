@@ -40,7 +40,7 @@ namespace eclass_updater
         {
             if (shouldSave)
             {
-                JsonDAO.Save(user);
+                JsonDAO.SaveCourses(user);
             }
         }
 

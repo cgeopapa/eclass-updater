@@ -1,4 +1,6 @@
-﻿namespace eclass_updater.model
+﻿using System.Collections.Generic;
+
+namespace eclass_updater.model
 {
     public class User
     {

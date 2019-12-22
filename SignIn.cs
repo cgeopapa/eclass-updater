@@ -21,7 +21,8 @@ namespace eclass_updater
             if (Program.browser.SignIn(ref user))
             {
                 Program.browser.GetCourses(user);
-                JsonDAO.Save(user);
+                JsonDAO.SaveUser(user);
+                JsonDAO.SaveCourses(user);
 
                 Hide();
                 MainApp m = new MainApp(user);
